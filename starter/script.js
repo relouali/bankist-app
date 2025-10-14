@@ -272,3 +272,4 @@ const randomNumber = (min, max) =>
 console.log(randomNumber(10, 20));
 
 console.log((23.3).toFixed(3));
+test;
