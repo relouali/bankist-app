@@ -252,24 +252,66 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
-console.log(Number.parseInt('30px')); // 30
-console.log(Number.parseInt('px30')); // NaN dit werkt alleen als de waarde begint met een nummer
-console.log(Number.parseInt('30px', 10));
-console.log(Number.parseFloat('2.5px'));
-console.log(Number.isFinite(23 / 0));
-console.log(Number.isFinite(23));
-console.log(Number.isInteger(23.0));
+// console.log(Number.parseInt('30px')); // 30
+// console.log(Number.parseInt('px30')); // NaN dit werkt alleen als de waarde begint met een nummer
+// console.log(Number.parseInt('30px', 10));
+// console.log(Number.parseFloat('2.5px'));
+// console.log(Number.isFinite(23 / 0));
+// console.log(Number.isFinite(23));
+// console.log(Number.isInteger(23.0));
 
-console.log(Math.sqrt(100));
+// console.log(Math.sqrt(100));
 
-console.log(Math.max(1, 2, 3, 4, 5));
-console.log(Math.trunc(Math.random() * 6 + 1));
+// console.log(Math.max(1, 2, 3, 4, 5));
+// console.log(Math.trunc(Math.random() * 6 + 1));
 
-// functie voor het genereren van een randon nummer in een range
-const randomNumber = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+// // functie voor het genereren van een randon nummer in een range
+// const randomNumber = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
 
-console.log(randomNumber(10, 20));
+// console.log(randomNumber(10, 20));
 
-console.log((23.3).toFixed(3));
-test;
+// console.log((23.3).toFixed(3));
+
+// console.log((23.3).toFixed(3)); // '23'
+// console.log(Number(23.3).toFixed(3));
+
+// console.log(16 % 3);
+
+// const evenOrNot = function (n) {
+//   return n % 2 !== 0;
+// };
+
+// console.log(evenOrNot(4));
+// console.log(evenOrNot(5));
+
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+//     if (i % 2 === 0) {
+//       row.style.backgroundColor = 'orange';
+//     }
+//     if (i % 3 === 0) {
+//       row.style.backgroundColor = 'yellow';
+//     }
+//   });
+// });
+
+// const Num1 = 10_000_000;
+// console.log(Num1);
+
+// const Num2 = 12190234928493284932048932084209n;
+// console.log(Num2);
+// console.log(typeof Num2);
+
+// const now = new Date('13 March, 1998');
+// console.log(now);
+
+// const now2 = new Date(2050, 10, 12);
+// console.log(now2);
+
+// console.log(new Date(0));
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
