@@ -314,4 +314,17 @@ btnSort.addEventListener('click', function (e) {
 
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(future);
-console.log(future.getFullYear());
+console.log(future.getFullYear()); // jaar
+console.log(future.getMonth()); // maand (zero indexed)
+console.log(future.getDate()); // dag
+console.log(future.getDay()); // dag van week
+console.log(future.getHours()); // uur van de date
+console.log(future.getMinutes()); // uur minuten van date
+console.log(future.getSeconds()); // seconden van de dag
+console.log(Date.now());
+console.log(new Date(1760634803203));
+console.log(future.setDate(20));
+console.log(new Date(future));
+
+
+
