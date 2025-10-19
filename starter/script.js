@@ -18,7 +18,7 @@ const account1 = {
   movementsDates: [
     '2025-10-12T20:03:00.000Z',
     '2025-10-13T20:03:00.000Z',
-    '2025-10-14T20:03:00.000Z',
+    '2024-10-14T20:03:00.000Z',
     '2025-10-15T20:03:00.000Z',
     '2025-10-16T20:03:00.000Z',
     '2025-10-17T20:03:00.000Z',
@@ -40,7 +40,7 @@ const account2 = {
     '2019-11-30T09:48:16.867Z',
     '2019-12-25T06:04:23.907Z',
     '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
+    '2024-02-05T16:33:06.386Z',
     '2020-04-10T14:43:26.374Z',
     '2020-06-25T18:49:59.371Z',
     '2020-07-26T12:01:20.894Z',
@@ -81,7 +81,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, locale) {
   const calcDayPassed = (day1, day2) =>
     Math.round(Math.abs(day2 - day1) / (1000 * 60 * 60 * 24));
 
@@ -92,10 +92,7 @@ const formatMovementDate = function (date) {
   if (daysPassed === 1) return 'Yesterdag';
   if (daysPassed <= 7) return `${daysPassed} days ago`;
   else {
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return Intl.DateTimeFormat(locale).format(date);
   }
 };
 
@@ -116,7 +113,7 @@ const displayMovements = function (acc, sort = false) {
     const { movement, movementDate } = obj;
     const type = movement > 0 ? 'deposit' : 'withdrawal';
     const date = new Date(movementDate);
-    const displayDate = formatMovementDate(date);
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -189,21 +186,6 @@ let currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-// Experimenting API
-const locale = navigator.language;
-console.log(locale);
-const now = new Date();
-const options = {
-  hour: 'numeric',
-  minute: 'numeric',
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  weekday: 'long',
-};
-
-labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
-
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -221,28 +203,24 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
 
     // Create current date and time
-    const locale = navigator.language;
-    console.log(locale);
     const now = new Date();
     const options = {
       hour: 'numeric',
       minute: 'numeric',
       day: 'numeric',
-      month: 'long',
+      month: 'numeric',
       year: 'numeric',
-      weekday: 'long',
     };
-
-    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
-      now
-    );
+    const locale = navigator.language;
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
     // const day = `${now.getDate()}`.padStart(2, 0);
     // const month = `${now.getMonth() + 1}`.padStart(2, 0);
     // const year = now.getFullYear();
     // const hour = `${now.getHours()}`.padStart(2, 0);
     // const minutes = `${now.getMinutes()}`.padStart(2, 0);
-
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minutes}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -405,8 +383,8 @@ btnSort.addEventListener('click', function (e) {
 // console.log(future.setDate(20));
 // console.log(new Date(future));
 
-const future = new Date(2037, 10, 19, 15, 23);
-console.log(Number(future));
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(Number(future));
 
-const days1 = calcDayPassed(new Date(2037, 3, 25), new Date(2037, 3, 24));
-console.log(days1);
+// const days1 = calcDayPassed(new Date(2037, 3, 25), new Date(2037, 3, 24));
+// console.log(days1);
