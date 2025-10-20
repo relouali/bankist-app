@@ -25,7 +25,7 @@ const account1 = {
     '2025-10-18T20:03:00.000Z',
     '2025-09-19T20:03:00.000Z',
   ],
-  currency: 'EUR',
+  currency: 'USD',
   locale: 'pt-PT', // de-DE
 };
 
@@ -115,13 +115,17 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(movementDate);
     const displayDate = formatMovementDate(date, acc.locale);
 
+    const formattedMov = new Intl.NumberFormat(acc.locale, {
+      style: 'currency',
+      currency: acc.currency,
+    }).format(movement);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
               <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${movement.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -388,3 +392,16 @@ btnSort.addEventListener('click', function (e) {
 
 // const days1 = calcDayPassed(new Date(2037, 3, 25), new Date(2037, 3, 24));
 // console.log(days1);
+
+const num = 3884764.23;
+const options = {
+  style: 'currency',
+  unit: 'celsius',
+  currency: 'eur',
+  useGrouping: false,
+};
+console.log(new Intl.NumberFormat('en-UK', options).format(num));
+console.log(new Intl.NumberFormat('de-DE', options).format(num));
+console.log(new Intl.NumberFormat('ar-MO', options).format(num));
+console.log(new Intl.NumberFormat(navigator.language, options).format(num));
+console.log(navigator.language);
